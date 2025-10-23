@@ -19,22 +19,39 @@ function logHistory(array) {
 
 logHistory(calcHistory)
 
+//Number validation helper function
+function validateNumbers(num1, num2) {
+    if (typeof num1 !== 'number' || typeof num2 !== 'number') {
+        console.log("Error: Both inputs must be numbers");
+        return false;
+    }
+    if (isNaN(num1) || isNaN(num2)) {
+        console.log("Error: Inputs cannot be NaN");
+        return false;
+    }
+    return true;
+}
+
 // Calculation functions with console logs to confirm functionality
 //Addition Function
 function addition(num1, num2) {
-    const result = num1 + num2
-    historyPush(result)
-    return(result) 
+    if (!validateNumbers(num1, num2)) return null;
+    
+    const result = num1 + num2;
+    historyPush(result);
+    return result;
 }
 
-const additionTest = addition(1, 2) 
+const additionTest = addition(1, "h") 
 console.log("Addition result =", additionTest)
 
 //Subtraction Function
 function subtraction(num1, num2) {
-    const result = num1 - num2
-    historyPush(result)
-    return(result) 
+    if (!validateNumbers(num1, num2)) return null;
+    
+    const result = num1 - num2;
+    historyPush(result);
+    return result;
 }
 
 const subtractionTest = subtraction(1, 2) 
@@ -42,28 +59,31 @@ console.log("Subtraction result =", subtractionTest)
 
 //Multiplication Function
 function multiplication(num1, num2) {
-    const result = num1 * num2
-    historyPush(result)
-    return(result) 
+    if (!validateNumbers(num1, num2)) return null;
+    
+    const result = num1 * num2;
+    historyPush(result);
+    return result;
 }
 
-let multiplicationTest = multiplication(-1, 6) 
-console.log("Multplication result =", multiplicationTest)
-
+const multiplicationTest = multiplication(-1, 6) 
+console.log("Multiplication result =", multiplicationTest)
 
 //Division Function
 function division(num1, num2) {
+    if (!validateNumbers(num1, num2)) return null;
+    
     if (num2 === 0) {
-        console.log("Cannot divide by 0")
-        return(null)
-    } else { 
-        const result = num1 / num2
-        historyPush(result)
-        return(result)
+        console.log("Cannot divide by 0");
+        return null;
     }
+    
+    const result = num1 / num2;
+    historyPush(result);
+    return result;
 }
 
-const divisionTest = division(10, .03) 
+const divisionTest = division(30, 10) 
 console.log("Division result =", divisionTest)
 
 logHistory(calcHistory)
