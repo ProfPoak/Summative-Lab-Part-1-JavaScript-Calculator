@@ -3,6 +3,7 @@
 const calcHistory = []
 
 //Functions for history tracking
+
 //Function to push calculation details as an object to the calcHistory array. Correlated calculation symbols are saved to each object for easier console logs.
 function historyPush (operation, symbol, num1, num2, result) {
     calcHistory.push({
@@ -14,7 +15,7 @@ function historyPush (operation, symbol, num1, num2, result) {
     });
 }
 
-//Function to console.log calcHistory using a for loop to access each object in the array and then log specific properties from each object
+//Function to console.log calcHistory using a "for" loop to access each object in the array, and then log specific properties from each object.
 function logHistory(array) {
     if(array.length === 0) {
         console.log("No calculation history")
@@ -30,7 +31,7 @@ function logHistory(array) {
 logHistory(calcHistory)
 
 //Number validation function to ensure that paramaters entered are only numbers. 
-//Using typeof to check broadly for alternative data types. isNaN used to prevent NaN from getting through the typeof test
+//Using typeof to check broadly for alternative data types. isNaN used to prevent NaN from getting through the typeof test.
 function validateNumbers(num1, num2) {
     if (typeof num1 !== 'number' || typeof num2 !== 'number') {
         console.log("Error: Both inputs must be numbers");
@@ -44,6 +45,7 @@ function validateNumbers(num1, num2) {
 }
 
 // Calculation functions with console logs to check functionality
+
 //Addition Function
 function addition(num1, num2) {
     if (!validateNumbers(num1, num2)) return null;
