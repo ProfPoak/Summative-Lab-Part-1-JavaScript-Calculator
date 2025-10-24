@@ -3,23 +3,34 @@
 const calcHistory = []
 
 //Functions for history tracking
-//Function to push calculated value to calcHistory
-function historyPush (value) {
-    calcHistory.push(value);
+//Function to push calculation details as an object to the calcHistory array. Correlated calculation symbols are saved to each object for easier console logs.
+function historyPush (operation, symbol, num1, num2, result) {
+    calcHistory.push({
+        operation,
+        symbol,
+        num1,
+        num2,
+        result
+    });
 }
 
-//Function to console.log calcHistory
+//Function to console.log calcHistory using a for loop to access each object in the array and then log specific properties from each object
 function logHistory(array) {
     if(array.length === 0) {
         console.log("No calculation history")
     } else {
-        console.log("History =", calcHistory)
+        console.log("History:")
+        for(let i=0; i < array.length; i++) {
+            const item = calcHistory[i]
+            console.log(`  ${item.num1} ${item.symbol} ${item.num2} = ${item.result}`)
+        }
     }
 }
 
 logHistory(calcHistory)
 
-//Number validation helper function
+//Number validation function to ensure that paramaters entered are only numbers. 
+//Using typeof to check broadly for alternative data types. isNaN used to prevent NaN from getting through the typeof test
 function validateNumbers(num1, num2) {
     if (typeof num1 !== 'number' || typeof num2 !== 'number') {
         console.log("Error: Both inputs must be numbers");
@@ -32,42 +43,39 @@ function validateNumbers(num1, num2) {
     return true;
 }
 
-// Calculation functions with console logs to confirm functionality
+// Calculation functions with console logs to check functionality
 //Addition Function
 function addition(num1, num2) {
     if (!validateNumbers(num1, num2)) return null;
     
     const result = num1 + num2;
-    historyPush(result);
+    historyPush('addition', '+', num1, num2, result);
     return result;
 }
 
-const additionTest = addition(1, "h") 
-console.log("Addition result =", additionTest)
+console.log("Addition result =", addition(2, 2))
 
 //Subtraction Function
 function subtraction(num1, num2) {
     if (!validateNumbers(num1, num2)) return null;
     
     const result = num1 - num2;
-    historyPush(result);
+    historyPush('subtraction', '-', num1, num2, result);
     return result;
 }
 
-const subtractionTest = subtraction(1, 2) 
-console.log("Subtraction result =", subtractionTest)
+console.log("Subtraction result =", subtraction(10, 5))
 
 //Multiplication Function
 function multiplication(num1, num2) {
     if (!validateNumbers(num1, num2)) return null;
     
     const result = num1 * num2;
-    historyPush(result);
+    historyPush('multiplication', '*', num1, num2, result);
     return result;
 }
 
-const multiplicationTest = multiplication(-1, 6) 
-console.log("Multiplication result =", multiplicationTest)
+console.log("Multiplication result =", multiplication(10, 10))
 
 //Division Function
 function division(num1, num2) {
@@ -79,11 +87,10 @@ function division(num1, num2) {
     }
     
     const result = num1 / num2;
-    historyPush(result);
+    historyPush('division', '/', num1, num2, result);
     return result;
 }
 
-const divisionTest = division(30, 10) 
-console.log("Division result =", divisionTest)
+console.log("Division result =", division(500, 10))
 
 logHistory(calcHistory)
